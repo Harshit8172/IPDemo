@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Private IP Address</title>
+</head>
+<body>
+    <h1>User Private IP Address</h1>
+    {% if private_ip %}
+    <p>Your private IP address is: {{ private_ip }}</p>
+    {% else %}
+    <p>Unable to retrieve the private IP address.</p>
+    {% endif %}
+</body>
+</html>
