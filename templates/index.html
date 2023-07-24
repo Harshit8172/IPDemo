@@ -1,14 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>User Private IP Address</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public IP Address</title>
 </head>
 <body>
-    <h1>User Private IP Address</h1>
-    {% if private_ip %}
-    <p>Your private IP address is: {{ private_ip }}</p>
-    {% else %}
-    <p>Unable to retrieve the private IP address.</p>
-    {% endif %}
+    <h1>Hi! Your Public IP Address:</h1>
+    <p id="publicIP"></p>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const publicIPElement = document.getElementById('publicIP');
+
+
+        // Function to make the HTTP request to the server
+        function getPublicIP() {
+          const xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                const publicIP = xhr.responseText;
+                publicIPElement.textContent = publicIP;
+              } else {
+                publicIPElement.textContent = 'Error getting public IP';
+              }
+            }
+          };
+
+          xhr.open('GET', '/', true); // This sends the request to the same server as the HTML page
+          xhr.send();
+        }
+
+
+        getPublicIP();
+      });
+    </script>
 </body>
 </html>
